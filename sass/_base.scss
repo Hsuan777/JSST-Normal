@@ -1,0 +1,33 @@
+
+// 瀏覽器可能會不一樣
+html{
+  font-size: 16px;
+}
+body{
+  overflow-x: hidden;
+}
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h1, .h1 {
+  font-size: 64px;
+}
+h2, .h2 {
+  font-size: 48px;  
+}
+h3, .h3 {
+  font-size: 36px;  
+}
+h4, .h4 {
+  font-size: 24px;  
+}
+h1, .h1,h2, .h2,h3, .h3,h4, .h4{
+  line-height: 1.5;
+  font-weight: bolder;
+}
+.object--fit {
+  object-fit: cover;
+}
