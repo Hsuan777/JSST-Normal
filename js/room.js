@@ -1,5 +1,8 @@
 /* 取得元素 */
 const room = document.querySelector('#room')
+const submitData = document.querySelector('input[type="submit"]')
+const checkInData = document.querySelector('#checkInData')
+const checkOutData = document.querySelector('#checkOutData')
 
 /* 定義資料 */
 const token = 'Dy6L0VMd6jDv0BBEeZLsSV3CK9ebQi4uFLy6xxu7i6UWTxJtiT7grJ0uZqKn'
@@ -7,6 +10,8 @@ const hexAPI = 'https://challenge.thef2e.com/api/thef2e2019/stage6/'
 let getParameter = new URL(location.href)
 let roomID = getParameter.searchParams.get('roomID')
 let roomData = {}
+
+/* 取得房型資訊 */
 const getData = () => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
   axios.get(hexAPI+'room/'+roomID)
@@ -15,61 +20,80 @@ const getData = () => {
         render(roomsData)
         console.log(roomsData)
       })
-
 }
 const render = (data) => {
-  // 字串處理
+  // 床型暫存字串
   let tempBed = ''
+  // 圖片暫存字串
   let tempImage = ''
-  let hasAmenities = []
-  let strAmenities = ''
-  Object.keys(data.amenities).map((item) => {
-    if (data.amenities[item] === true) {
+  // 設施分類
+  let hasAmenities = ['roomAmenities']
+  let hasOtherService = ['otherService']
+  const roomAmenities = ['Wi-Fi', 'Air-Conditioner', 'Child-Friendly', 'Mini-Bar', 'Pet-Friendly', 'Refrigerator', 'Sofa', 'Television']
+  const otherService = ['Breakfast', 'Great-View', 'Smoke-Free']
+  let strRoomAmenities = ''
+  let strOtherService = ''
+  Object.keys(data.amenities).forEach((item) => {
+    // includes 回傳 true or false
+    // indexOf 回傳 陣列中第幾個
+    if (data.amenities[item] === true && roomAmenities.includes(item)) {
       hasAmenities.push(item)
+    } else if (data.amenities[item] === true && otherService.includes(item)) {
+      hasOtherService.push(item)
     }
   })
-  hasAmenities.forEach((item) => {
-    let str = ''
-    switch(item){
-      case 'Wi-Fi':
-        str = '<span class="material-icons">wifi</span>'
-        break;
-      case 'Air-Conditioner':
-        str = '<span class="material-icons">ac_unit</span>'
-        break;
-      case 'Breakfast':
-        str = '<span class="material-icons">free_breakfast</span>'
-        break;
-      case 'Child-Friendly':
-        str = '<span class="material-icons">child_friendly</span>'
-        break;
-      case 'Great-View':
-        str = '<span class="material-icons">panorama</span>'
-        break;
-      case 'Mini-Bar':
-        str = '<span class="material-icons">local_bar</span>'
-        break;
-      case 'Pet-Friendly':
-        str = '<span class="material-icons">pets</span>'
-        break;
-      case 'Refrigerator':
-        str = '<span class="material-icons">kitchen</span>'
-        break;
-      case 'Room-Service':
-        str = '<span class="material-icons">room_service</span>'
-        break;
-      case 'Smoke-Free':
-        str = '<span class="material-icons">smoke_free</span>'
-        break;
-      case 'Sofa':
-        str = '<span class="material-icons">airline_seat_recline_extra</span>'
-        break;
-      case 'Television':
-        str = '<span class="material-icons">personal_video</span>'
-        break;
-    }
-    strAmenities += str
-  })
+  const getStrOfAmenities = (data, type) => {
+    data.forEach((item) => {
+      let str = ''
+      switch(item){
+        case 'Wi-Fi':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">wifi</span>Wi-Fi</p>'
+          break;
+        case 'Air-Conditioner':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">ac_unit</span>冷氣</p>'
+          break;
+        case 'Breakfast':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">free_breakfast</span>附早餐</p>'
+          break;
+        case 'Child-Friendly':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">child_friendly</span>親子</p>'
+          break;
+        case 'Great-View':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">panorama</span>景觀</p>'
+          break;
+        case 'Mini-Bar':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">local_bar</span>Mini-Bar</p>'
+          break;
+        case 'Pet-Friendly':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">pets</span>寵物</p>'
+          break;
+        case 'Refrigerator':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">kitchen</span>冰箱</p>'
+          break;
+        case 'Room-Service':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">room_service</span>客房服務</p>'
+          break;
+        case 'Smoke-Free':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">smoke_free</span>禁菸</p>'
+          break;
+        case 'Sofa':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">airline_seat_recline_extra</span>沙發</p>'
+          break;
+        case 'Television':
+          str = '<p class="d-flex align-items-center mr-2"><span class="material-icons mr-1">personal_video</span>電視</p>'
+          break;
+      }
+      if (type === 'roomAmenities') {
+        strRoomAmenities += str
+      } else if (type === 'otherService') {
+        strOtherService += str
+      }
+    })
+  }
+  
+  // 字串處理
+  getStrOfAmenities(hasAmenities, 'roomAmenities')
+  getStrOfAmenities(hasOtherService, 'otherService')
   data.descriptionShort.Bed.forEach((item) => {
     tempBed += `。${item}`
   })
@@ -79,7 +103,7 @@ const render = (data) => {
     `
   });
 
-  // 字串填入
+  // 房間資訊 - 字串填入
   let temp = `
     <div class="col-4">
       <h4 class="font-weight-bold">${data.name}</h4>
@@ -100,11 +124,11 @@ const render = (data) => {
       <div class="row">
         <div class="col-6">
           <p class="font-weight-bold">房間設備</p>
-          <p class="font-weight-bold">${strAmenities}</p>
+          <div class="d-flex flex-wrap font-weight-bold">${strRoomAmenities}</div>
         </div>
         <div class="col-6">
           <p class="font-weight-bold">其他</p>
-          
+          <div class="d-flex flex-wrap font-weight-bold">${strOtherService}</div>
         </div>
       </div>
     </div>
@@ -133,3 +157,37 @@ const render = (data) => {
 }
 
 getData()
+
+const booking = {
+  name: '123',
+  tel: '0933123456',
+  date: ['2020-08-21', '2020-08-22']
+}
+
+const postData = (e) => {
+  e.preventDefault()
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`
+  axios.post(hexAPI+'room/'+roomID, booking)
+      .then((res) => {
+        console.log(res.data)
+        console.log('預定成功')
+      })
+}
+const deleteAllData = (e) => {
+  e.preventDefault()
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`
+  axios.delete(hexAPI+'room/s')
+      .then((res) => {
+        console.log(res.data)
+        console.log('預定成功')
+      })
+}
+const getCheckInData = (e) => {
+  console.log(e.target.value)
+}
+const getCheckOutData = (e) => {
+  console.log(e.target.value)
+}
+submitData.addEventListener('click', postData)
+checkInData.addEventListener('change', getCheckInData)
+checkOutData.addEventListener('change', getCheckOutData)

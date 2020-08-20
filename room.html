@@ -44,22 +44,45 @@
   <main>
     <section class="container">
       <div id="room" class="row">
-        <table class="table table-borderless">
-          <tbody>
-            <tr>
-              <td>人數 : </td>
-              <td>坪數 : </td>
-              <td>checkIn 時間</td>
-            </tr>
-            <tr>
-              <td>床型 : </td>
-              <td>餐點 : </td>
-              <td>checkOut :</td>
-            </tr>
-          </tbody>
-        </table>
-        
       </div>
+      <form class="form-row align-items-end py-3">
+        <div class="col-4">
+          <div class="form-row">
+            <div class="form-group mb-0">
+              <label for="liveIn">入住日期</label>
+              <input type="date" id="checkInData" class="form-control">
+            </div>
+            <div class="form-group mb-0">
+              <label for="liveOut">退房日期</label>
+              <input type="date" id="checkOutData" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary">-</button>
+              <button type="button" class="btn btn-outline-secondary" disabled>1 
+                Adult</button>
+              <button type="button" class="btn btn-secondary">+</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary">-</button>
+              <button type="button" class="btn btn-outline-secondary" disabled>1 Child</button>
+              <button type="button" class="btn btn-secondary">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="d-flex">
+            <div class="input-group input-group-inline mr-2">
+              <input type="text" placeholder="預定人姓名" class="form-control">
+              <input type="tel" placeholder="預定人手機" class="form-control">
+            </div>
+            <input type="submit" value="預訂房間" class="btn btn-outline-secondary">
+          </div>
+        </div>
+      </form>
     </section>
   </main>
 
