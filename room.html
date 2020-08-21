@@ -17,7 +17,7 @@
   <!--google font-family -->
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
-
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"> -->
   <link rel="icon" href=""  type="image/x-icon">
   <link rel="stylesheet" href="css/all.css">
   <title>六角旅館</title>
@@ -49,12 +49,12 @@
         <div class="col-4">
           <div class="form-row">
             <div class="form-group mb-0">
-              <label for="liveIn">入住日期</label>
-              <input type="date" id="checkInData" class="form-control">
+              <label for="checkInData">入住日期</label>
+              <input type="text" id="checkInData" name="checkInData" class="form-control">
             </div>
             <div class="form-group mb-0">
-              <label for="liveOut">退房日期</label>
-              <input type="date" id="checkOutData" class="form-control">
+              <label for="checkOutData">退房日期</label>
+              <input type="text" id="checkOutData" name="checkOutData" class="form-control">
             </div>
           </div>
         </div>
@@ -86,9 +86,15 @@
     </section>
   </main>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.js" integrity="sha512-Hkemjwczq2iepz/dVjaZ/Xd+agLwV7Od5nQ+R74m4E8ruIblnDAJOewx2+xT4TQ+Q9Q2bcMHFD/d70RzVjrWVw==" crossorigin="anonymous"></script> -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
   <script src="js/room.js"></script>
 </body>
 

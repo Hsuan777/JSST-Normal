@@ -1,8 +1,7 @@
 /* 取得元素 */
 const room = document.querySelector('#room')
 const submitData = document.querySelector('input[type="submit"]')
-const checkInData = document.querySelector('#checkInData')
-const checkOutData = document.querySelector('#checkOutData')
+
 
 /* 定義資料 */
 const token = 'Dy6L0VMd6jDv0BBEeZLsSV3CK9ebQi4uFLy6xxu7i6UWTxJtiT7grJ0uZqKn'
@@ -182,12 +181,49 @@ const deleteAllData = (e) => {
         console.log('預定成功')
       })
 }
-const getCheckInData = (e) => {
-  console.log(e.target.value)
-}
-const getCheckOutData = (e) => {
-  console.log(e.target.value)
-}
-submitData.addEventListener('click', postData)
-checkInData.addEventListener('change', getCheckInData)
-checkOutData.addEventListener('change', getCheckOutData)
+
+// 讓它們不能小於0
+let startDate = '2020-08-31'
+let endDate = '2020-09-02'
+var DateDiff = function (start, end) { // sDate1 和 sDate2 是 2016-06-18 格式
+  var oDate1 = new Date(start);
+  var oDate2 = new Date(end);
+  var iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24); // 把相差的毫秒數轉換為天數
+  return iDays;
+};
+let GetDateDiff1 = DateDiff(startDate, endDate); 
+console.log(GetDateDiff1); //1
+
+$( function() {
+  const checkInData = document.querySelector('#checkInData')
+  const checkOutData = document.querySelector('#checkOutData')
+  let selectStartDate = ''
+  $( "#checkInData" ).datepicker({
+    dateFormat: "yy-mm-dd",
+    minDate: new Date('2020-08-21'),
+    maxDate: "+1m"
+  });
+  const getCheckInData = (e) => {
+    selectStartDate = e.target.value
+    console.log(e.target.value)
+    
+  }
+  const getCheckOutData = (e) => {
+    console.log(e.target.value)
+    
+  }
+  $( "#checkInData" ).datepicker({
+    dateFormat: "yy-mm-dd",
+    minDate: 0,
+    maxDate: "+1m"
+  });
+  $( "#checkOutData" ).datepicker({
+    dateFormat: "yy-mm-dd",
+    minDate: 1,
+    maxDate: "+1m"
+  });
+  
+  submitData.addEventListener('click', postData)
+  checkInData.addEventListener('mousedown', getCheckInData)
+  checkOutData.addEventListener('mousedown', getCheckOutData)
+} );

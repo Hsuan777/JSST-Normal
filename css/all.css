@@ -9693,4 +9693,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
   width: 200px;
   height: 150px;
 }
+
+.ui-datepicker {
+  background-color: grey;
+}
 /*# sourceMappingURL=all.css.map */
