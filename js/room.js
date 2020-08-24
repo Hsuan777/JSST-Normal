@@ -1,7 +1,11 @@
 /* 取得元素 */
 const room = document.querySelector('#room')
 const submitData = document.querySelector('input[type="submit"]')
-
+const personName = document.querySelector('#personName')
+const personTel = document.querySelector('#personTel')
+const checkInDate = document.querySelector('#checkInDate')
+const checkOutDate = document.querySelector('#checkOutDate')
+const deleteReservation = document.querySelector('#deleteReservation')
 
 /* 定義資料 */
 const token = 'Dy6L0VMd6jDv0BBEeZLsSV3CK9ebQi4uFLy6xxu7i6UWTxJtiT7grJ0uZqKn'
@@ -9,6 +13,11 @@ const hexAPI = 'https://challenge.thef2e.com/api/thef2e2019/stage6/'
 let getParameter = new URL(location.href)
 let roomID = getParameter.searchParams.get('roomID')
 let roomData = {}
+const booking = {
+  name: '',
+  tel: '',
+  date: []
+}
 
 /* 取得房型資訊 */
 const getData = () => {
@@ -17,7 +26,7 @@ const getData = () => {
       .then((res) => {
         roomsData = res.data.room[0]
         render(roomsData)
-        console.log(roomsData)
+        // console.log(roomsData)
       })
 }
 const render = (data) => {
@@ -155,33 +164,54 @@ const render = (data) => {
   room.innerHTML = temp
 }
 
-getData()
-
-const booking = {
-  name: '123',
-  tel: '0933123456',
-  date: ['2020-08-21', '2020-08-22']
-}
-
+/* 預定房間 */
+// 送出資料
 const postData = (e) => {
   e.preventDefault()
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`
-  axios.post(hexAPI+'room/'+roomID, booking)
-      .then((res) => {
-        console.log(res.data)
-        console.log('預定成功')
-      })
+  if (personName.value === ''){
+    $('#reservationInfo').text('請填寫聯絡姓名!')
+    $('#reservationModal').modal('show')
+  } else if (personTel.value === '') {
+    $('#reservationInfo').text('請填寫手機號碼!')
+    $('#reservationModal').modal('show')
+  } else if (checkInDate.value === '') {
+    $('#reservationInfo').text('請選擇入住日期!')
+    $('#reservationModal').modal('show')
+  } else if (checkOutDate.value === '') {
+    $('#reservationInfo').text('請選擇退房日期!')
+    $('#reservationModal').modal('show')
+  } else {
+    booking.name = personName.value
+    booking.tel = personTel.value 
+    booking.date = ['2020-08-25', '2020-08-26']
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`
+    axios.post(hexAPI+'room/'+roomID, booking)
+        .then((res) => {
+          console.log(res.data)
+          $('#reservationInfo').text('預約成功!')
+          $('#reservationModal').modal('show')
+        })
+  }
 }
+
+// 刪除資料
 const deleteAllData = (e) => {
   e.preventDefault()
   axios.defaults.headers.common.Authorization = `Bearer ${token}`
-  axios.delete(hexAPI+'room/s')
-      .then((res) => {
-        console.log(res.data)
-        console.log('預定成功')
+  axios.delete(hexAPI+'rooms')
+      .then(() => {
+        $('#reservationInfo').text('已取消所有預約，歡迎再次預約~') 
+        $('#reservationModal').modal('show')
       })
 }
 
+/* 執行與監聽 */
+getData()
+submitData.addEventListener('click', postData)
+deleteReservation.addEventListener('click', deleteAllData)
+
+
+/* 時間處理 */
 // 讓它們不能小於0
 let startDate = '2020-08-31'
 let endDate = '2020-09-02'
@@ -195,8 +225,7 @@ let GetDateDiff1 = DateDiff(startDate, endDate);
 console.log(GetDateDiff1); //1
 
 $( function() {
-  const checkInData = document.querySelector('#checkInData')
-  const checkOutData = document.querySelector('#checkOutData')
+
   let selectStartDate = ''
   $( "#checkInData" ).datepicker({
     dateFormat: "yy-mm-dd",
@@ -223,7 +252,6 @@ $( function() {
     maxDate: "+1m"
   });
   
-  submitData.addEventListener('click', postData)
   checkInData.addEventListener('mousedown', getCheckInData)
   checkOutData.addEventListener('mousedown', getCheckOutData)
 } );

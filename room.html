@@ -17,7 +17,6 @@
   <!--google font-family -->
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"> -->
   <link rel="icon" href=""  type="image/x-icon">
   <link rel="stylesheet" href="css/all.css">
   <title>六角旅館</title>
@@ -45,21 +44,21 @@
     <section class="container">
       <div id="room" class="row">
       </div>
-      <form class="form-row align-items-end py-3">
-        <div class="col-4">
-          <div class="form-row">
-            <div class="form-group mb-0">
-              <label for="checkInData">入住日期</label>
-              <input type="text" id="checkInData" name="checkInData" class="form-control">
+      <form class="row align-items-end py-3">
+        <div class="col-6">
+          <div class="form-row mb-3">
+            <div class="form-group mb-0 mr-2">
+              <label for="checkInDate">入住日期</label>
+              <input type="text" id="checkInDate" name="checkInDate" class="form-control">
             </div>
             <div class="form-group mb-0">
               <label for="checkOutData">退房日期</label>
-              <input type="text" id="checkOutData" name="checkOutData" class="form-control">
+              <input type="text" id="checkOutDate" name="checkOutDate" class="form-control">
             </div>
           </div>
         </div>
-        <div class="col-4">
-          <div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="col-6">
+          <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="Basic example">
               <button type="button" class="btn btn-secondary">-</button>
               <button type="button" class="btn btn-outline-secondary" disabled>1 
@@ -73,27 +72,64 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
-          <div class="d-flex">
-            <div class="input-group input-group-inline mr-2">
-              <input type="text" placeholder="預定人姓名" class="form-control">
-              <input type="tel" placeholder="預定人手機" class="form-control">
+        <div class="col-6">
+          <div class="form-row">
+            <div class="form-group mb-0 mr-2">
+              <label for="personName">預定人姓名</label>
+              <input type="text" id="personName" value="" placeholder="姓名" class="form-control">
             </div>
-            <input type="submit" value="預訂房間" class="btn btn-outline-secondary">
+            <div class="form-group mb-0">
+              <label for="personName">預定人手機</label>
+              <input type="tel" id="personTel" value="" placeholder="手機" class="form-control">
+            </div>
+            <!-- <div class="input-group input-group-inline mr-2">
+              <input type="text" id="personName" placeholder="預定人姓名" class="form-control">
+              <input type="tel" id="personTel" placeholder="預定人手機" class="form-control">
+            </div> -->
           </div>
         </div>
+        <div class="col-6 ml-auto">
+          <input type="button" id="deleteReservation" class="btn btn-outline-secondary" value="取消預約">
+          <input type="submit" value="預訂房間" class="btn btn-success">
+        </div>
       </form>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-info" id="reservationModalLabel">預定資訊</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p id="reservationInfo"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">確定</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.9/datepicker.min.js" integrity="sha512-Hkemjwczq2iepz/dVjaZ/Xd+agLwV7Od5nQ+R74m4E8ruIblnDAJOewx2+xT4TQ+Q9Q2bcMHFD/d70RzVjrWVw==" crossorigin="anonymous"></script> -->
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <!-- bootstrap 需求 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+  <!-- axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 
   <script src="js/room.js"></script>
 </body>
