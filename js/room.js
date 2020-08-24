@@ -215,14 +215,22 @@ deleteReservation.addEventListener('click', deleteAllData)
 // 讓它們不能小於0
 let startDate = '2020-08-31'
 let endDate = '2020-09-02'
-var DateDiff = function (start, end) { // sDate1 和 sDate2 是 2016-06-18 格式
-  var oDate1 = new Date(start);
-  var oDate2 = new Date(end);
-  var iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24); // 把相差的毫秒數轉換為天數
-  return iDays;
+const dateDiff = function (start, end) {
+  let startDate = new Date(start);
+  var endDate = new Date(end);
+  var days = parseInt(Math.abs(startDate - endDate) / 1000 / 60 / 60 / 24); // 把相差的毫秒數轉換為天數
+  return days;
 };
-let GetDateDiff1 = DateDiff(startDate, endDate); 
-console.log(GetDateDiff1); //1
+let getDateDiff = dateDiff(startDate, endDate); 
+console.log(getDateDiff); // 2
+const date = new Date()
+date.setDate(date.getDate() + 3);
+console.log(date.getDate())
+// 相差一天 -> [入住日期, 退房日期]
+// 相差兩天 -> [入住日期, 入住日期 +1, 退房日期]
+// 相差三天 -> [入住日期, 入住日期 +1, 入住日期 +2, 退房日期]
+// 第四十一關
+
 
 $( function() {
 
