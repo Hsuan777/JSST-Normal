@@ -211,6 +211,9 @@ submitData.addEventListener('click', postData)
 deleteReservation.addEventListener('click', deleteAllData)
 
 
+
+
+
 /* 時間處理 */
 // 格式化時間 年-月-日
 const formatDate = (selectDay) => {
@@ -218,72 +221,85 @@ const formatDate = (selectDay) => {
   let year = date.getFullYear()
   let month = date.getMonth()+1
   let day = date.getDate()
-  let newDate = `${year}-${month}-${day}`
+  let newDate = `${month}/${day}/${year}`
   return newDate
 }
 
-// 入住與退房日期
+// 入住與退房日期 - 陣列形式
 let startDate = formatDate(Date())
 let endDate = '2020-08-28'
-
-const arrayDate = (selectDay, diff) => {
-  const date = new Date(selectDay)
-  date.setDate(date.getDate() + diff);
-  let year = date.getFullYear()
-  let month = date.getMonth()+1
-  let day = date.getDate()
-  let array = []
-  array.push(selectDay)
-  for(let i = 1; i <= diff ; i++){
-    array.push(`${year}-${month}-${day}`)
-  }
-  console.log(array)
-}
-arrayDate(startDate, 4)
-
-// 相差天數
-const dateDiff = function (start, end) {
-  // 運用時不能小於0
-  let startDate = new Date(start);
-  var endDate = new Date(end);
-  var days = parseInt(Math.abs(startDate - endDate) / 1000 / 60 / 60 / 24); // 把相差的毫秒數轉換為天數
-  return days;
-};
-console.log(dateDiff(startDate, endDate)); 
 
 // 相差一天 -> [入住日期, 退房日期]
 // 相差兩天 -> [入住日期, 入住日期 +1, 退房日期]
 // 相差三天 -> [入住日期, 入住日期 +1, 入住日期 +2, 退房日期]
+const arrayDate = (selectDay, diff) => {
+  const date = new Date(selectDay)
+  let array = []
+  array.push(selectDay)
+  for(let i = 1; i <= diff ; i++){
+    date.setDate(date.getDate() + 1);
+    let year = date.getFullYear()
+    let month = date.getMonth()+1
+    let day = date.getDate()
+    array.push(`${year}-${month}-${day}`)
+  }
+  console.log(array)
+  return array
+}
+
+// 相差天數
+const dateDiff = (start, end) => {
+  let startDate = new Date(start);
+  let endDate = new Date(end);
+  // 把相差的毫秒數轉換為天數
+  let days = parseInt(Math.abs(startDate - endDate) / 1000 / 60 / 60 / 24); 
+  return days;
+};
+arrayDate(startDate, dateDiff(startDate, endDate))
 
 
-// $( function() {
+// 退房日期必須 +1
+const checkOutDateFn = (startDate) => {
+  const date = new Date(startDate)
+  date.setDate(date.getDate() + 1)
+  let year = date.getFullYear()
+  let month = date.getMonth()+1
+  let day = date.getDate()
+  return `${month}/${day}/${year}`
+}
+let selectStartDate = formatDate(Date())
+let selectEndDate = checkOutDateFn(Date())
+// 初始化可選日期
+$( '#checkInDate' ).datepicker({
+  startDate: formatDate(Date()),
+  endDate: '10/30/2020'
+}).datepicker('update', Date());
 
-//   let selectStartDate = ''
-//   $( "#checkInData" ).datepicker({
-//     dateFormat: "yy-mm-dd",
-//     minDate: new Date('2020-08-21'),
-//     maxDate: "+1m"
-//   });
-//   const getCheckInData = (e) => {
-//     selectStartDate = e.target.value
-//     console.log(e.target.value)
-    
-//   }
-//   const getCheckOutData = (e) => {
-//     console.log(e.target.value)
-    
-//   }
-//   $( "#checkInData" ).datepicker({
-//     dateFormat: "yy-mm-dd",
-//     minDate: 0,
-//     maxDate: "+1m"
-//   });
-//   $( "#checkOutData" ).datepicker({
-//     dateFormat: "yy-mm-dd",
-//     minDate: 1,
-//     maxDate: "+1m"
-//   });
+$("#checkOutDate").datepicker({
   
-//   checkInData.addEventListener('mousedown', getCheckInData)
-//   checkOutData.addEventListener('mousedown', getCheckOutData)
-// } );
+}).datepicker('update', checkOutDateFn(Date()));
+
+
+// 選擇訂房日期
+const getCheckInData = (e) => {
+  // 取得入住日期
+  selectStartDate = e.target.value
+  // 變更退房日期
+  $('#checkOutDate').datepicker('destroy')
+  $('#checkOutDate').datepicker('update', checkOutDateFn(selectStartDate));
+}
+
+// 選擇退房日期
+const getCheckOutData = (e) => {
+  // 取得退房日期
+  selectEndDate = e.target.value
+
+  // 變更退房日期
+  $('#checkOutDate').datepicker('destroy');  
+  $('#checkOutDate').datepicker({
+    startDate: checkOutDateFn(selectStartDate),
+    endDate: '10/31/2020'
+  });  
+}
+$("#checkInDate").on('focus', getCheckInData)
+$("#checkOutDate").on('mousedown', getCheckOutData)
