@@ -95,17 +95,28 @@ const arrayDate = (selectDay, diff) => {
   let year = date.getFullYear()
   let month = date.getMonth()+1
   let day = date.getDate()
+  if (month < 10) {
+    month = '0'+ month
+  }
+  if (day < 10) {
+    day = '0'+ day
+  }
   array.push(`${year}-${month}-${day}`)
   for(let i = 1; i <= diff ; i++){
     date.setDate(date.getDate() + 1);
     let year = date.getFullYear()
     let month = date.getMonth()+1
     let day = date.getDate()
+    if (month < 10) {
+      month = '0'+ month
+    }
+    if (day < 10) {
+      day = '0'+ day
+    }
     array.push(`${year}-${month}-${day}`)
   }
   return array
 }
-
 
 /* 房型資訊 */
 const getData = () => {
@@ -274,7 +285,7 @@ const postData = (e) => {
     // 選擇的入住與退房
     booking.date = arrayDate(selectStartDate, dateDiff(selectStartDate, selectEndDate))
     // booking.date = ['2020-08-27', '2020-08-28']
-    console.log(booking)
+    // TODO:房間只有一間，日期無法重複
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
     axios.post(hexAPI+'room/' + roomID, booking)
         .then((res) => {
