@@ -58,7 +58,9 @@ selectStartDate = checkOutDateFn(Date()) // 不能小於當日
 selectEndDate = checkOutDateFn(checkOutDateFn(Date())) // 不能小於入住日
 $('#checkInDate').datepicker({
   startDate: checkOutDateFn(Date()),
-  endDate: '10/30/2020'
+  endDate: '10/30/2020',
+  // TODO:傳回來的資料若有預定資訊，則不能預約該日
+  datesDisabled:['08/31/2020']
 }).datepicker('update', checkOutDateFn(Date()));
 
 $("#checkOutDate").datepicker('update', checkOutDateFn(checkOutDateFn(Date())));
@@ -125,6 +127,7 @@ const getData = () => {
       .then((res) => {
         roomsData = res.data.room[0]
         render(roomsData)
+        // TODO:所有預約列表
         // console.log(roomsData)
       })
 }
@@ -284,13 +287,15 @@ const postData = (e) => {
     booking.tel = personTel.value 
     // 選擇的入住與退房
     booking.date = arrayDate(selectStartDate, dateDiff(selectStartDate, selectEndDate))
-    // booking.date = ['2020-08-27', '2020-08-28']
     // TODO:房間只有一間，日期無法重複
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
     axios.post(hexAPI+'room/' + roomID, booking)
         .then((res) => {
           console.log(res.data)
           $('#reservationInfo').text('預約成功!')
+          // TODO:booking成功，會取回該預訂者資訊
+          let tempBooking = ``
+          $('hasBooking').text(tempBooking)
           $('#reservationModal').modal('show')
         })
   }
