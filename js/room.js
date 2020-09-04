@@ -13,6 +13,7 @@ const hexAPI = 'https://challenge.thef2e.com/api/thef2e2019/stage6/'
 let getParameter = new URL(location.href)
 let roomID = getParameter.searchParams.get('roomID')
 let roomData = {}
+let bookingData = []
 const booking = {
   name: '',
   tel: '',
@@ -126,9 +127,9 @@ const getData = () => {
   axios.get(hexAPI+'room/'+roomID)
       .then((res) => {
         roomsData = res.data.room[0]
+        bookingData = res.data.booking
         render(roomsData)
-        // TODO:所有預約列表
-        // console.log(roomsData)
+        renderBooking(bookingData)
       })
 }
 const render = (data) => {
@@ -266,6 +267,27 @@ const render = (data) => {
   room.innerHTML = temp
 }
 
+// TODO:所有預約列表
+const renderBooking = (data) => {
+  let temp = ''
+  // let newArray = []
+  let personTel = [...(new Set(data.map((item)=> item.tel)))]
+  console.log(personTel)
+  // data.forEach(item => {
+  //   let hasBooking = {
+  //     name: '',
+  //     date: []
+  //   }
+  //   if (item.tel)
+  // })
+
+  data.forEach((item) => {
+    let str = `<li>${item.name} ${item.date}</li>`
+
+    temp += str
+  })
+  $('#bookingData').html(temp)
+}
 /* 預定房間 */
 // 送出資料
 const postData = (e) => {
