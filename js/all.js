@@ -24,9 +24,6 @@ const render = (data) => {
         <div class="card-header p-0 border-0">
           <img src="${item.imageUrl}" alt="" class="custom__img object--fit">
         </div>
-        <div class="card-body">
-          <h4 class="font-weight-bold text-center text-dark">${item.name}</h4>
-        </div>
       </a>
     </div>`
   })

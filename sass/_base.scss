@@ -5,10 +5,17 @@ html{
 }
 body{
   overflow-x: hidden;
-  background-image: url('../image/1.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  position: relative;
+  &::before{
+    position: absolute;
+    content: '';
+    width: 315px;
+    height: 476px;
+    bottom: 0px;
+    right: 0;
+    background-image: url('../images/Lovepik_com-400275415-willow-branch.png');
+    z-index: -1;
+  }
 }
 
 a{
@@ -17,13 +24,13 @@ a{
 }
 
 h1, .h1 {
-  font-size: 64px;
+  font-size: 62px;
 }
 h2, .h2 {
   font-size: 48px;  
 }
 h3, .h3 {
-  font-size: 36px;  
+  font-size: 32px;  
 }
 h4, .h4 {
   font-size: 24px;  
@@ -35,3 +42,12 @@ h1, .h1,h2, .h2,h3, .h3,h4, .h4{
 .object--fit {
   object-fit: cover;
 }
+.main {
+  min-height: calc(100vh - (80px+88px));
+}
+.vertical-lr {
+  writing-mode: vertical-lr;
+}
+// .letter-spacing {
+//   letter-spacing: 10px;
+// }

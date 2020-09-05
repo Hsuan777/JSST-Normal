@@ -18,44 +18,52 @@
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
 
-  <link rel="icon" href=""  type="image/x-icon">
+  <link rel="icon" href=""  type="images/x-icon">
   <link rel="stylesheet" href="css/all.css">
   <title>六角旅館</title>
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-transparent mb-3">
-    <div class="container">
-      <a class="navbar-brand text-primary" href="index.html">綠柳宿旅</a>
+<body class="custom__background">
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent pt-5">
+    <div class="container position-relative">
+      <div class="custom__brand d-flex flex-column align-items-center">
+        <a class="custom__booking vertical-lr letter-spacing navbar-brand btn btn-primary text-secondary font-weight-bold py-4 px-2 mr-0" href="index.html"> <span class="pb-2">訂</span>房</a>
+        <a class="custom__booking custom__booking__icon btn btn-secondary rounded-circle d-flex p-2 mt-5" href="tel:096666666"> 
+          <img src="../images/Mask-Group-1.svg" alt="">
+        </a>
+        <a class="custom__booking custom__booking__icon btn btn-secondary rounded-circle d-flex p-2 mt-5" href="#"> 
+          <img src="../images/Mask-Group-2.svg" alt="">
+        </a>
+      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav justify-content-between w-100">
-          <li class="nav-item">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mr-5">
             <a class="nav-link d-flex align-items-center font-weight-bold" href="#">
-              <img src="../image/Mask-Group-3.svg" alt="">
+              <img src="../images/Mask-Group-3.svg" alt="" class="mr-3">
               關於我們</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item mr-5">
             <a class="nav-link d-flex align-items-center font-weight-bold" href="#">
-              <img src="../image/Mask-Group-4.svg" alt="">
+              <img src="../images/Mask-Group-4.svg" alt="" class="mr-3">
               客房介紹</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item mr-5">
             <a class="nav-link d-flex align-items-center font-weight-bold" href="#">
-              <img src="../image/Mask-Group-5.svg" alt="">
+              <img src="../images/Mask-Group-5.svg" alt="" class="mr-3">
               住宿服務</a>
           </li>
-          <li class="nav-item d-flex align-items-center font-weight-bold">
-            <a class="nav-link" href="#">
-              <img src="../image/Mask-Group-6.svg" alt="">
+          <li class="nav-item mr-5">
+            <a class="nav-link d-flex align-items-center font-weight-bold" href="#">
+              <img src="../images/Mask-Group-6.svg" alt="" class="mr-3">
               交通指引</a>
           </li>
-          <li class="nav-item d-flex align-items-center font-weight-bold">
-            <a class="nav-link" href="#">
-              <img src="../image/Mask-Group-7.svg" alt="">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center font-weight-bold" href="#">
+              <img src="../images/Mask-Group-7.svg" alt="" class="mr-3">
               最新消息</a>
           </li>
         </ul>
@@ -63,25 +71,52 @@
     </div>
   </nav>
 
-  <main>
+  <main class="main">
     <section class="container">
-      <div id="rooms" class="row align-items-end">
+      <div class="row mt-5 pt-5">
+        <div class="col-8">
+          <div class="d-flex justify-content-center mb-5">
+            <div class="house mr-5">
+              <div class="house__topLeft"></div>
+              <div class="house__topRight"></div>
+              <div class="house__left"></div>
+              <div class="house__bottom"></div>
+              <div class="house__right"></div>
+              <div class="house__centerDown"></div>
+            </div>
+            <h1 class="d-flex flex-column align-items-center text-info">
+              <span class="mr-5">綠柳宿旅</span>  
+              <span class="h3 text-info">Green Willow Lodge</sapn>
+            </h1>
+          </div>
+          <p class="bg-secondary text-center text-white py-1">客房介紹</p>
+          <div id="rooms" class="row align-items-end">
     
+          </div>
+        </div>
       </div>
+      
     </section>
   </main>
 
   <footer class="bg-secondary py-3">
     <div class="container">
-      <div class="row">
-        <div class="col-2">
-          <img src="../image/220px-QRcode_image.svg.png" alt="" class="bg-white">
+      <div class="row align-items-center">
+        <div class="col-1">
+          <img src="../images/220px-QRcode_image.svg.png" alt="" class="bg-white">
         </div>
         <div class="col-2 text-third">
-          Tel: Email:
+          <p class="mb-0">Tel： 02-24884712<br> Fax： 02-84884712</p>
         </div>
-        <div class="col-2">
-          <a href="#" class="text-third">繁體中文</a>
+        <div class="col-4 text-third">
+          <p class="mb-0"> Email： reloading.hotel@gmail.com<br> Add： 新北市小山區五月鄉三雲裡5號之1</p>
+        </div>
+        <div class="col-5">
+          <a href="#" class="demarcation text-white pr-3">繁體中文</a>
+          <a href="#" class="demarcation text-third px-3">简体中文</a>
+          <a href="#" class="demarcation text-third px-3">日本語</a>
+          <a href="#" class="demarcation text-third px-3">English</a>
+          <a href="#" class="text-third pl-3">한국어</a>
         </div>
       </div>
     </div>
