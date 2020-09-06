@@ -121,14 +121,35 @@
   }
   &__centerDown {
     position: absolute;
-    top: -155px;
-    left: 0px;
-    width: 320px;
+    top: -215px;
+    left: -30px;
+    width: 450px;
     height: 180px;
     border: 5px solid map-get($theme-colors, primary);
     border-color: transparent transparent transparent  map-get($theme-colors, primary);
-    border-radius: 50%;
+    border-radius: 200px 100px 100px 200px;
     transform: rotate(-60deg);
-    // border-radius: 150px 150px 0 0;
+  }
+  &__centerUp {
+    position: relative;
+    top: 14px;
+    left: 74px;
+    width: 35px;
+    height: 60px;
+    background-color: map-get($theme-colors, primary);
+    // transform: matrix(0.99, 0.16, -0.16, 0.99, 0, 0);
+    border-radius:0 250px 250px 0px;
+    transform: skew(45deg);
+    // &::before {
+    //   position: absolute;
+    //   content: '';
+    //   top: 0px;
+    //   left: -15px;
+    //   width: 87px;
+    //   height: 87px;
+    //   background-color:  transparent;
+    //   z-index: -1;
+    // }
+
   }
 }
