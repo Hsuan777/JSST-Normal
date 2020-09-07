@@ -22,7 +22,7 @@ const render = (data) => {
     <div class="col-md-6 col-lg-4 mb-3">
       <a href="room.html?roomID=${item.id}" class="card text-decoration-none">
         <div class="card-header p-0 border-0">
-          <img src="${item.imageUrl}" alt="" class="custom__img object--fit">
+          <img src="${item.imageUrl}" alt="" class="custom__roomImg object--fit">
         </div>
       </a>
     </div>`
