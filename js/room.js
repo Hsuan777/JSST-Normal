@@ -206,63 +206,94 @@ const render = (data) => {
   getStrOfAmenities(hasAmenities, 'roomAmenities')
   getStrOfAmenities(hasOtherService, 'otherService')
   data.descriptionShort.Bed.forEach((item) => {
-    tempBed += `。${item}`
+    tempBed += `${item}`
   })
-  data.imageUrl.forEach((item) => {
-    tempImage += `
-      <img src="${item}" alt="" class="custom__listImg object--fit rounded mr-3">
-    `
+  data.imageUrl.forEach((item, index) => {
+    if (index !== 0) {
+      tempImage += `
+        <img src="${item}" alt="" class="custom__roomImg__secondary object--fit">
+      `
+    }
   });
 
   // 房間資訊 - 字串填入
   let temp = `
-    <div class="col-md-12 col-lg-4">
-      <h4 class="font-weight-bold">${data.name}</h4>
+    <div class="col-12 mb-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h4 class="d-flex align-items-center">
+          <span class="badge badge-pill badge-danger mr-3">HOT</span>
+          <span class="font-weight-bold"> 房型名稱 : ${data.name} </span>
+        </h4>
+        <button type="button" class="btn btn-primary px-4 py-1">預訂</button>
+      </div>
+      
     </div>
-    <div class="col-md-12 col-lg-4 mb-3">
-      <img src="${data.imageUrl[0]}" alt="" class="custom__img">
+    <div class="col-md-12 col-lg-7">
+      <img src="${data.imageUrl[0]}" alt="" class="custom__roomImg__primary object--fit">
     </div>
-    <div class="col-md-12 col-lg-4">
-      <div class="d-flex flex-column justify-content-end align-items-end h-100">
-        <p class="font-weight-bold">平日價格 : ${data.normalDayPrice}</p>
-        <p class="font-weight-bold">價日價格 : ${data.holidayPrice}</p>
+    <div class="col-md-12 col-lg-5">
+      <div class="d-flex flex-column justify-content-between h-100">
+      ${tempImage}
       </div>
     </div>
-    <div class="col-12 mb-3 py-3 bg-light">
-      ${tempImage}
-    </div>
-    <div class="col-12">
+
+    <div class="col-md-12 col-lg-4 ml-auto">
+      <div class="d-flex flex-column justify-content-end align-items-end">
+        <h3 class="font-weight-bold text-secondary">總價 NT. ${data.normalDayPrice}</h3>
+      </div>
       <div class="row">
         <div class="col-6">
           <p class="font-weight-bold">房間設備</p>
-          <div class="d-flex flex-wrap font-weight-bold">${strRoomAmenities}</div>
+          <div class="d-flex flex-column text-third">${strRoomAmenities}</div>
         </div>
         <div class="col-6">
           <p class="font-weight-bold">其他</p>
-          <div class="d-flex flex-wrap font-weight-bold">${strOtherService}</div>
+          <div class="d-flex flex-column  text-third">${strOtherService}</div>
         </div>
       </div>
     </div>
+    
     <div class="col-12 mb-3">
-      <p class="font-weight-bold">簡介</p>
-      ${data.description}
+      <div class="row">
+        <div class="col-8">
+          <h4 class="font-weight-bold mb-3">房間介紹</h4>
+          <p> ${data.description}</p>
+          <div class="d-flex justify-content-between align-items-center position-relative mb-5">
+            <p class="nowrap mb-0">checkIn 時間</p>
+            <div class="progress w-75">
+              <div class="progress-bar bg-transparent" role="progressbar" style="width: 62.5%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-primary" role="progressbar" style="width: 16.66%" aria-valuenow="16.66" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p class="custom__checkInEarly">
+              <span class="custom__popovers text-center d-block">${data.checkInAndOut.checkInEarly}</span>
+            </p>
+            <p class="custom__checkInLate">
+              <span class="custom__popovers text-center d-block">${data.checkInAndOut.checkInLate} </span>
+            </p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center position-relative">
+            <p class="nowrap  mb-0">checkOut 時間</p>
+            <div class="progress w-75">
+              <div class="progress-bar bg-third" role="progressbar" style="width: 41.6%" aria-valuenow="41.6" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p class="custom__checkOut">
+              <span class="custom__popovers text-center d-block">${data.checkInAndOut.checkOut}</span>
+            </p>
+          </div>
+        </div>
+        <div class="col-4">
+          <ul class="bg-secondary text-white py-4">
+            <li> 床型 : ${tempBed}</li>
+            <li> 人數 : 最低 ${data.descriptionShort.GuestMin} 人、最高 ${data.descriptionShort.GuestMax} 人</li>
+            <li> 獨立衛浴 : ${data.descriptionShort['Private-Bath']} 間</li>
+            <li> 坪數 : ${data.descriptionShort.Footage}</li>
+            <li> 假日(五~日)價格：${data.holidayPrice}</li>
+            <li> 平日(一~四)價格：${data.normalDayPrice}</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="col-12 mb-3">
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <td width="250px" class="pl-0"> | 人數 : 最低 ${data.descriptionShort.GuestMin} 人、最高 ${data.descriptionShort.GuestMax} 人</td>
-            <td width="150px"> | 坪數 : ${data.descriptionShort.Footage}</td>
-            <td> | checkIn 時間 : 最早 ${data.checkInAndOut.checkInEarly}、最晚 ${data.checkInAndOut.checkInLate}</td>
-          </tr>
-          <tr>
-            <td class="pl-0"> | 床型 : ${tempBed} </td>
-            <td> | 獨立衛浴 : ${data.descriptionShort['Private-Bath']} 間</td>
-            <td> | checkOut 時間 : ${data.checkInAndOut.checkOut}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    
     `
   room.innerHTML = temp
 }

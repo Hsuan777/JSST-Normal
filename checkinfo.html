@@ -68,73 +68,53 @@
   </nav>
 
   <main>
-    <section class="container">
-      <div id="room" class="row">
+    <h2>訂單內容</h2>
+    <h2>訂房資料</h2>
+    <form class="form-inline py-3">
+      <div class="form-group mr-2">
+        <label for="checkInDate" class="mr-2">入住日期</label>
+        <input type="text" id="checkInDate" name="checkInDate" class="form-control">
       </div>
-      <form class="form-inline py-3">
-        <div class="form-group mr-2">
-          <label for="checkInDate" class="mr-2">入住日期</label>
-          <input type="text" id="checkInDate" name="checkInDate" class="form-control">
-        </div>
-        <div class="form-group mr-2">
-          <label for="checkOutData" class="mr-2">退房日期</label>
-          <input type="text" id="checkOutDate" name="checkOutDate" class="form-control">
-        </div>
-        <div class="form-group mr-2">
-          <label for="adult" class="mr-2">客房</label>
-          <select name="" id="room">
-            <option value="1">1間</option>
-          </select>
-        </div>
-        <div class="form-group mr-2">
-          <label for="adult" class="mr-2">大人</label>
-          <select name="" id="adult">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="child" class="mr-2">小孩</label>
-          <select name="" id="child">
-            <option value="0" selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </div>
-      </form>
-      <ul id="bookingData">
-        <li></li>
-      </ul>
-      <!-- Modal -->
-      <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-info" id="reservationModalLabel">預定資訊</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p id="reservationInfo"></p>
-              <!-- <div id="hasBooking"  class="">
-                <h3>您的預約日期，請盡早入住~</h3>
-                <ul class="list-unstyled">
-                  <li></li>
-                </ul>
-              </div> -->
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">確定</button>
-            </div>
+      <div class="form-group mr-2">
+        <label for="checkOutData" class="mr-2">退房日期</label>
+        <input type="text" id="checkOutDate" name="checkOutDate" class="form-control">
+      </div>
+      <div class="form-group mr-2">
+        <label for="adult" class="mr-2">大人</label>
+        <select name="" id="adult">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="child" class="mr-2">小孩</label>
+        <select name="" id="child">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+     
+      <!-- <div class="col-6">
+        <div class="form-row">
+          <div class="form-group mb-0 mr-2">
+            <label for="personName">預定人姓名</label>
+            <input type="text" id="personName" value="" placeholder="姓名" class="form-control">
+          </div>
+          <div class="form-group mb-0">
+            <label for="personName">預定人手機</label>
+            <input type="tel" id="personTel" value="" placeholder="手機" class="form-control">
           </div>
         </div>
-      </div>
-    </section>
+      </div> -->
+      <!-- <div class="col-6 ml-auto">
+        <input type="button" id="deleteReservation" class="btn btn-outline-secondary" value="取消預約">
+        <input type="submit" value="預訂房間" class="btn btn-success">
+      </div> -->
+    </form>
   </main>
 
   <footer class="bg-secondary py-3">
@@ -181,5 +161,3 @@
   <script src="js/room.js"></script>
   <!-- <script src="js/bootstrap-datepicker.min.js"></script> -->
 </body>
-
-</html>

@@ -5,13 +5,15 @@
     background-position: center center;
     background-size: cover;
   }
-  &__img{
-    width: 100%;
-    height: 182px;
-  }
-  &__listImg{
-    width: 200px;
-    height: 150px;
+  &__roomImg{
+    &__primary {
+      width: 100%;
+      height: 640px;
+    }
+    &__secondary {
+      width: 100%;
+      height: 309px;
+    }
   }
   &__brand{
     position: absolute;
@@ -48,6 +50,42 @@
         background-color: map-get($theme-colors, secondary );
       }
     }
+  }
+  &__checkInEarly {
+    position: absolute;
+    top: -33px;
+    right: 24%;
+  }
+  &__checkInLate {
+    position: absolute;
+    top: -33px;
+    right: 11.5%;
+  }
+  &__checkOut {
+    position: absolute;
+    top: -33px;
+    right: 40%;
+  }
+  &__popovers {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    border: 1px solid grey;
+    background-color: #fff;
+    &::before {
+      position: absolute;
+      content:'';
+      bottom: -2px;
+      left: 50% ;
+      width: 7px;
+      height: 7px;
+      background-color: #fff;
+      transform: rotate(-45deg) translateX(-50%);
+      border:  1px solid grey;
+      border-color: transparent transparent grey grey;
+
+    }
+
   }
 }
 .demarcation{
