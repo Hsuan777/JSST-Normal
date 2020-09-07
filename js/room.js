@@ -1,5 +1,5 @@
 /* 取得元素 */
-const room = document.querySelector('#room')
+const roomInfo = document.querySelector('#roomInfo')
 const submitData = document.querySelector('input[type="submit"]')
 const personName = document.querySelector('#personName')
 const personTel = document.querySelector('#personTel')
@@ -217,7 +217,7 @@ const render = (data) => {
   });
 
   // 房間資訊 - 字串填入
-  let temp = `
+  let tempImages = `
     <div class="col-12 mb-3">
       <div class="d-flex justify-content-between align-items-center">
         <h4 class="d-flex align-items-center">
@@ -226,7 +226,6 @@ const render = (data) => {
         </h4>
         <button type="button" class="btn btn-primary px-4 py-1">預訂</button>
       </div>
-      
     </div>
     <div class="col-md-12 col-lg-7">
       <img src="${data.imageUrl[0]}" alt="" class="custom__roomImg__primary object--fit">
@@ -235,20 +234,21 @@ const render = (data) => {
       <div class="d-flex flex-column justify-content-between h-100">
       ${tempImage}
       </div>
-    </div>
-
-    <div class="col-md-12 col-lg-4 ml-auto">
+    </div>`
+    
+  let temp = `
+    <div class="col-md-12 col-lg-4 ml-auto mb-5">
       <div class="d-flex flex-column justify-content-end align-items-end">
-        <h3 class="font-weight-bold text-secondary">總價 NT. ${data.normalDayPrice}</h3>
+        <h3 class="demarcation demarcation__price font-weight-bold text-secondary mb-5">總價 NT. ${data.normalDayPrice}</h3>
       </div>
-      <div class="row">
+      <div class="row demarcation demarcation__services text-secondary">
         <div class="col-6">
           <p class="font-weight-bold">房間設備</p>
-          <div class="d-flex flex-column text-third">${strRoomAmenities}</div>
+          <div class="d-flex flex-column ">${strRoomAmenities}</div>
         </div>
         <div class="col-6">
           <p class="font-weight-bold">其他</p>
-          <div class="d-flex flex-column  text-third">${strOtherService}</div>
+          <div class="d-flex flex-column">${strOtherService}</div>
         </div>
       </div>
     </div>
@@ -256,8 +256,7 @@ const render = (data) => {
     <div class="col-12 mb-3">
       <div class="row">
         <div class="col-8">
-          <h4 class="font-weight-bold mb-3">房間介紹</h4>
-          <p> ${data.description}</p>
+          <p class="text-black-50 mb-5 pb-5"> ${data.description}</p>
           <div class="d-flex justify-content-between align-items-center position-relative mb-5">
             <p class="nowrap mb-0">checkIn 時間</p>
             <div class="progress w-75">
@@ -282,20 +281,20 @@ const render = (data) => {
           </div>
         </div>
         <div class="col-4">
-          <ul class="bg-secondary text-white py-4">
-            <li> 床型 : ${tempBed}</li>
-            <li> 人數 : 最低 ${data.descriptionShort.GuestMin} 人、最高 ${data.descriptionShort.GuestMax} 人</li>
-            <li> 獨立衛浴 : ${data.descriptionShort['Private-Bath']} 間</li>
-            <li> 坪數 : ${data.descriptionShort.Footage}</li>
-            <li> 假日(五~日)價格：${data.holidayPrice}</li>
-            <li> 平日(一~四)價格：${data.normalDayPrice}</li>
+          <ul class="bg-secondary text-white py-3">
+            <li class="mb-3"> 床型 : ${tempBed}</li>
+            <li class="mb-3"> 人數 : 最低 ${data.descriptionShort.GuestMin} 人、最高 ${data.descriptionShort.GuestMax} 人</li>
+            <li class="mb-3"> 獨立衛浴 : ${data.descriptionShort['Private-Bath']} 間</li>
+            <li class="mb-3"> 坪數 : ${data.descriptionShort.Footage}</li>
+            <li class="mb-3"> 假日(五~日)價格：${data.holidayPrice}</li>
+            <li class="mb-3"> 平日(一~四)價格：${data.normalDayPrice}</li>
           </ul>
         </div>
       </div>
     </div>
-    
     `
-  room.innerHTML = temp
+  $('#roomImages').html(tempImages)
+  roomInfo.innerHTML = temp
 }
 
 // TODO:所有預約列表

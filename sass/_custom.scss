@@ -92,15 +92,41 @@
 }
 .demarcation{
   position: relative;
-  &::after {
-    position: absolute;
-    content: '';
-    top: 10%;
-    bottom: 10%;
-    right: 0;
-    width: 1px;
-    height: 100%;
-    background-color: map-get($theme-colors, third );
+  &__footer{
+    &::after {
+      position: absolute;
+      content: '';
+      top: 10%;
+      bottom: 10%;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background-color: map-get($theme-colors, third );
+    }
+  }
+  &__services {
+    &::before {
+      position: absolute;
+      content: '';
+      top: 10%;
+      bottom: 10%;
+      left: -44px;
+      width: 4px;
+      height: 100%;
+      background-color: map-get($theme-colors, secondary );
+    }
+  }
+  &__price {
+    &::after {
+      position: absolute;
+      content: '';
+      bottom: 3px;
+      right: 0;
+      width: 334px;
+      height: 10px;
+      background-color: map-get($theme-colors, third );
+      z-index: -1;
+    }
   }
 }
 .ui-datepicker{

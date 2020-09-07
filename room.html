@@ -69,9 +69,8 @@
 
   <main>
     <section class="container">
-      <div id="room" class="row">
-      </div>
-      <form class="form-inline py-3">
+      <div id="roomImages" class="row mb-5"></div>
+      <form class="form-inline d-flex justify-content-between mb-3">
         <div class="form-group mr-2">
           <label for="checkInDate" class="mr-2">入住日期</label>
           <input type="text" id="checkInDate" name="checkInDate" class="form-control">
@@ -82,30 +81,32 @@
         </div>
         <div class="form-group mr-2">
           <label for="adult" class="mr-2">客房</label>
-          <select name="" id="room">
+          <select name="" id="room" class="form-control">
             <option value="1">1間</option>
           </select>
         </div>
         <div class="form-group mr-2">
           <label for="adult" class="mr-2">大人</label>
-          <select name="" id="adult">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+          <select name="" id="adult" class="form-control">
+            <option value="1" selected>1人</option>
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+            <option value="4">4人</option>
           </select>
         </div>
         <div class="form-group">
           <label for="child" class="mr-2">小孩</label>
-          <select name="" id="child">
-            <option value="0" selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+          <select name="" id="child" class="form-control">
+            <option value="0" selected>0人</option>
+            <option value="1">1人</option>
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+            <option value="4">4人</option>
           </select>
         </div>
       </form>
+      <div id="roomInfo" class="row"></div>
+      
       <ul id="bookingData">
         <li></li>
       </ul>
@@ -150,10 +151,10 @@
           <p class="mb-0"> Email： reloading.hotel@gmail.com<br> Add： 新北市小山區五月鄉三雲裡5號之1</p>
         </div>
         <div class="col-5">
-          <a href="#" class="demarcation text-white pr-3">繁體中文</a>
-          <a href="#" class="demarcation text-third px-3">简体中文</a>
-          <a href="#" class="demarcation text-third px-3">日本語</a>
-          <a href="#" class="demarcation text-third px-3">English</a>
+          <a href="#" class="demarcation demarcation__footer text-white pr-3">繁體中文</a>
+          <a href="#" class="demarcation demarcation__footer text-third px-3">日本語</a>
+          <a href="#" class="demarcation demarcation__footer text-third px-3">English</a>
+          <a href="#" class="demarcation demarcation__footer text-third px-3">简体中文</a>
           <a href="#" class="text-third pl-3">한국어</a>
         </div>
       </div>
