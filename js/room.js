@@ -63,15 +63,21 @@ $('#checkInDate').datepicker({
   // TODO:傳回來的資料若有預定資訊，則不能預約該日
   datesDisabled:['08/31/2020']
 }).datepicker('update', checkOutDateFn(Date()));
+$('#checkInDateInline').datepicker({
+  startDate: checkOutDateFn(Date()),
+  endDate: '10/30/2020',
+  datesDisabled:['08/31/2020']
+}).datepicker('update', checkOutDateFn(Date()));
 
 $("#checkOutDate").datepicker('update', checkOutDateFn(checkOutDateFn(Date())));
-
 // 使用者選擇訂房日期
 const getCheckInData = (e) => {
   // 選擇入住日期
   selectStartDate = e.target.value
   // 變更退房日期
   // datepicker('destroy') 解除原有屬性設定
+  console.log(e.target)
+  $('#checkInDateInline').datepicker('update', selectStartDate);
   $('#checkOutDate').datepicker('destroy')
   $('#checkOutDate').datepicker('update', checkOutDateFn(selectStartDate));
 }
@@ -369,6 +375,7 @@ getData()
 
 // jQuery寫法
 $("#checkInDate").on('focus', getCheckInData)
+$('#checkInDateInline').on('mousedown', getCheckInData)
 $("#checkOutDate").on('mousedown', getCheckOutData)
 
 // 原始監聽寫法
